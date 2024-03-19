@@ -14,7 +14,6 @@ const createQuestion = async(
 
             const dto : QuestionDto  = {...req.body}
 
-            // const qsexist = await questionService.
 
             const qs:QuestionSchemaDto  = await questionService.createQuestionService(dto);
 
@@ -30,9 +29,24 @@ const getQuestionById = async(
     res: Response,
     next: NextFunction) : Promise<Response | void> => {
         try {
-            const qs = await questionService.getQuestionByIdService(req.params.id);
 
-            console.log(qs);
+            const {id} = req.params
+            console.log(id)
+            const qs = await questionService.getQuestionByIdService(id);
+
+
+            return GenerateResponse(res,200,qs)
+        } catch (error) {
+            return GenerateResponse(res,500,error)
+        }
+    }
+
+const getAllQuestions = async (
+    req: Request,
+    res: Response,
+    next: NextFunction) : Promise<Response | void> => {
+        try {
+            const qs = await questionService.getAllQuestionsService();
 
             return GenerateResponse(res,200,qs);
             
@@ -41,4 +55,4 @@ const getQuestionById = async(
         }
     }
 
-export { createQuestion };
+export { createQuestion, getQuestionById, getAllQuestions };
