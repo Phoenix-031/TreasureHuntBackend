@@ -14,13 +14,26 @@ const createQuestion = async(
 
             const dto : QuestionDto  = {...req.body}
 
+            // const qsexist = await questionService.
+
             const qs:QuestionSchemaDto  = await questionService.createQuestionService(dto);
 
             return GenerateResponse(res,201,qs)
             
         } catch (error) {
-            console.log(error);
+            return GenerateResponse(res,500,error)
         }
 }
+
+const getQuestion = async(
+    req: Request,
+    res: Response,
+    next: NextFunction) : Promise<Response | void> => {
+        try {
+            
+        } catch (error) {
+            return GenerateResponse(res,500,error)
+        }
+    }
 
 export { createQuestion };

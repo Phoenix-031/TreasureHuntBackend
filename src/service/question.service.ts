@@ -7,4 +7,8 @@ const createQuestionService = async  (dto : QuestionDto) : Promise<QuestionSchem
     return Question.create(dto);
 }
 
+// const getQuestionByIdService = async (id : string) :  Promise<any> => {
+
+// }
+
 export {createQuestionService}

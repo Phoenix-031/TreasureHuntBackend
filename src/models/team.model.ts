@@ -13,15 +13,27 @@ const teamSchema: Schema<any> = new Schema(
             required: true,
         },
         members : {
-            type : Array<string>,
+            type : [
+                {
+                    espektroId  : String,
+                },
+                {
+                    name : String,
+                }
+            ],
+            required : true,
         },
         leader: {
             type: String,
             required: true,
-            unique: true,
         },
         leaderEmail: {
             type: String,
+            unique: true,
+        },
+        espektroId : {
+            type : String,
+            required : true,
         },
         password: {
             type: String,

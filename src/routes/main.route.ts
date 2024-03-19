@@ -10,7 +10,7 @@ const mainRouter: Router = Router();
 
 
 // mainRouter.use('/auth', authRouter)
-// mainRouter.use('/team', teamRouter)
+mainRouter.use('/team', teamRouter)
 mainRouter.use('/question',questionRouter);
 mainRouter.get('/', (req : Request, res : Response) => {
     GenerateResponse(res, 200, {
