@@ -25,11 +25,16 @@ const createQuestion = async(
         }
 }
 
-const getQuestion = async(
+const getQuestionById = async(
     req: Request,
     res: Response,
     next: NextFunction) : Promise<Response | void> => {
         try {
+            const qs = await questionService.getQuestionByIdService(req.params.id);
+
+            console.log(qs);
+
+            return GenerateResponse(res,200,qs);
             
         } catch (error) {
             return GenerateResponse(res,500,error)

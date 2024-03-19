@@ -14,7 +14,7 @@ const questionSchema: Schema<QuestionSchemaDto> = new Schema(
         },
         question : {
             type : String,
-            required : true
+            default : ""
         },
         questionImage : {
             type : String,

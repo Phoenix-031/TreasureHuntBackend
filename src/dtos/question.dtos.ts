@@ -1,7 +1,7 @@
 type QuestionDto = {
     questionId : string;
     spotName? : string;
-    question : string,
+    question? : string | null,
     questionImage : string  | null;
     answerCode : string;
 }

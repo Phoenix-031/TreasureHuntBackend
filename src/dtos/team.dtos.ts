@@ -9,6 +9,7 @@ type TeamDto = {
     leaderEmail: string;
     espektroId: string;
     password: string;
+    spotList :string[];
 };
 
 type TeamUpdateDto = Partial<TeamDto>;
