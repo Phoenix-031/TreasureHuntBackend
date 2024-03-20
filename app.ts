@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
-import { mainRouter } from './src/routes/main.route';
+import { mainRouter } from './src/models/routes/main.route';
 import { GenerateResponse } from './utils/response.creator';
 import { connect } from './src/config/db.config';
 

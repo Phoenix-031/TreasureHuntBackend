@@ -24,4 +24,35 @@ const createTeam = async(
         }
 }
 
-export { createTeam };
+const loginTeam = async(
+    req : Request,
+    res : Response,
+    next: NextFunction
+) : Promise<Response | void> => {
+    try {
+        const {teamId, espektroId} = req.body;
+
+        const qs:TeamSchemaDto  = await teamService.loginTeamService({teamId, espektroId});
+        if(qs!== null)
+            return GenerateResponse(res,200,qs)
+
+        return GenerateResponse(res,401,{
+            message: "Invalid credentials"
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const getAllTeams = async(
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+
+    const teams = await teamService.getAllTeams();
+    return GenerateResponse(res,200,teams);
+}
+
+export { createTeam, loginTeam, getAllTeams };
