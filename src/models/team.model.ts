@@ -39,6 +39,10 @@ const teamSchema: Schema<any> = new Schema(
             type: String,
             required: true,
         },
+        lives: {
+            type: Number,
+            default: 5,
+        }
     },
     {
         timestamps: true,
