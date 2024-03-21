@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 const PROJECT_NAME = String(process.env.PROJECT_NAME);
 const MONGO_URI = process.env.CONNECTION_URI;
 const BASE_URL = process.env.BASE_URL;
-const PORT = Number(process.env.PORT);
+const PORT = Number(process.env.PORT) || 7826;
 
 app.use("/api/v1", mainRouter);
 
@@ -34,9 +34,10 @@ app.listen(PORT, async () => {
     console.log(
         `${getConnectionState(db.connection.readyState)} to the database`
     );
+    console.log('Server is up and running')
 
     // tslint:disable-next-line:no-console
-    console.log(`Listening on ${BASE_URL}:${PORT}...`);
+    // console.log(`Listening on ${BASE_URL}:${PORT}...`);
 
     app.emit("ready");
 });
