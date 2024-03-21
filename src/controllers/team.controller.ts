@@ -33,12 +33,13 @@ const loginTeam = async(
         const {teamId, espektroId} = req.body;
 
         const qs:TeamSchemaDto  = await teamService.loginTeamService({teamId, espektroId});
+        console.log(qs)
         if(qs!== null)
             return GenerateResponse(res,200,qs)
-
-        return GenerateResponse(res,401,{
-            message: "Invalid credentials"
-        })
+        else
+            return GenerateResponse(res,200,{
+                message: "Invalid credentials"
+            })
 
     } catch (error) {
         console.log(error);
