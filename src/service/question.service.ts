@@ -1,4 +1,6 @@
 
+import { QuerySnapshot } from "firebase-admin/firestore";
+import { GenerateResponse } from "../../utils/response.creator";
 import { QuestionSchemaDto, QuestionDto, QuestionUpdateDto } from "../dtos/question.dtos";
 import { Question } from "../models/question.model";
 
@@ -18,4 +20,16 @@ const getAllQuestionsService = async () : Promise<any> => {
     return qs;
 }
 
-export {createQuestionService, getQuestionByIdService, getAllQuestionsService}
+const verifyAnswerService = async (questionId : string, answer : string) : Promise<any> => {
+    const qs = await Question.findOne({questionId: questionId});
+
+    if(qs?.answerCode === answer) {
+        return true;
+    } else {
+        return false;
+    }
+    
+}
+
+
+export {createQuestionService, getQuestionByIdService, getAllQuestionsService, verifyAnswerService}

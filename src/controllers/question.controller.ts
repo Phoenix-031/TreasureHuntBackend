@@ -55,4 +55,20 @@ const getAllQuestions = async (
         }
     }
 
-export { createQuestion, getQuestionById, getAllQuestions };
+const verifyAnswer = async (
+    req: Request,
+    res: Response,
+    next: NextFunction) : Promise<Response | void> => {
+        try {
+            console.log(req.body)
+            const {questionId, answer} = req.body;
+            const qs = await questionService.verifyAnswerService(questionId, answer);
+
+            return GenerateResponse(res,200,qs);
+            
+        } catch (error) {
+            return GenerateResponse(res,500,error)
+        }
+    }
+
+export { createQuestion, getQuestionById, getAllQuestions, verifyAnswer };
