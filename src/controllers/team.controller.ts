@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-import { GenerateResponse } from "../../utils/response.creator";
+import { GenerateResponse } from "../utils/response.creator";
 
 import * as teamService from "../service/team.service";
 import { TeamDto, TeamSchemaDto } from "../dtos/team.dtos";

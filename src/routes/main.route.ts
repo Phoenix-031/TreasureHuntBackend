@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import { GenerateResponse } from "../../utils/response.creator";
+import { GenerateResponse } from "../utils/response.creator";
 import { teamRouter } from "./team.route";
 import { questionRouter } from "./questions.route";
 

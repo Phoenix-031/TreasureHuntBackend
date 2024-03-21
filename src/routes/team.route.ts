@@ -1,11 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-misused-promises */
-// import { Router } from "express";
-// import { body, query } from "express-validator";
-// import { createTeam, getAllTeams, loginTeam } from "../controllers/team.controller";
-
-const { Router } = require("express");
-const { createTeam, getAllTeams, loginTeam } = require("../controllers/team.controller");
+import { Router } from "express";
+import { createTeam, getAllTeams, loginTeam } from "../controllers/team.controller";
 
 
 const teamRouter = Router();

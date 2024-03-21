@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-import { GenerateResponse } from "../../utils/response.creator";
+import { GenerateResponse } from "../utils/response.creator";
 import { QuestionDto, QuestionSchemaDto } from "../dtos/question.dtos";
 
 import * as questionService from "../service/question.service";
@@ -59,11 +59,11 @@ const verifyAnswer = async (
     req: Request,
     res: Response,
     next: NextFunction) : Promise<Response | void> => {
+        console.log(req.body)
+        
         try {
-            console.log(req.body)
-            const {questionId, answer} = req.body;
-            const qs = await questionService.verifyAnswerService(questionId, answer);
-
+            const {questionId, answerCode} = req.body;
+            const qs = await questionService.verifyAnswerService(questionId, answerCode);
             return GenerateResponse(res,200,qs);
             
         } catch (error) {
