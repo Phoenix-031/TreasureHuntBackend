@@ -39,6 +39,10 @@ const teamSchema: Schema<any> = new Schema(
         answerString : {
             type:String,
             default: ''
+        },
+        isDisqualified :{
+            type : Boolean,
+            default : false
         }
     },
     {

@@ -99,4 +99,15 @@ const setAnswerHash = async (
     return GenerateResponse(res,200,hasupdated);
 }
 
-export { createTeam, loginTeam, getAllTeams, getLives, updateLives, setAnswerHash};
+const setDisqualified = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const {teamId} = req.body;
+    const hasupdated = await teamService.isDisqualifiedService(teamId);
+    console.log(hasupdated)
+    return GenerateResponse(res,200,hasupdated);
+}
+
+export { createTeam, loginTeam, getAllTeams, getLives, updateLives, setAnswerHash, setDisqualified};

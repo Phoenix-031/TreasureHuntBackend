@@ -56,13 +56,34 @@ const updateLivesService = async(teamId : string, lives : number) => {
 
 const updateAnswerHashService = async(teamId : string, answerHash : string) => {
     const team
-    = await Team.findOneAndUpdate({
+    = await Team.findOne({
+        teamId : teamId
+    })
+
+    const updatedteam = await Team.findOneAndUpdate({
         teamId : teamId
     },{
-        answerString : answerHash
+        answerString : team.answerString + '-'  + answerHash
+    })
+    
+    return updatedteam;
+}
+
+const isDisqualifiedService= async(teamId : string) => {
+    const team
+    = await Team.findOne({
+        teamId : teamId
+    })
+
+    const updatedteam = await Team.findOneAndUpdate({
+        teamId : teamId
+    },{
+        isDisqualified : true
     },{new : true})
-    return team;
+
+    return updatedteam;
+
 }
 
 
-export {createTeamService, loginTeamService, getAllTeams, getLivesService, updateLivesService, checkTeamName, updateAnswerHashService}
+export {createTeamService, loginTeamService, getAllTeams, getLivesService, updateLivesService, checkTeamName, updateAnswerHashService, isDisqualifiedService}
