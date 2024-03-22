@@ -28,4 +28,27 @@ const getAllTeams= async() => {
 
 // }
 
-export {createTeamService, loginTeamService, getAllTeams}
+const getLivesService = async(teamId : string) => {
+    const team = await Team.findOne({
+        teamId : teamId
+    })
+
+    if(team) {
+        return team.lives;
+    } else {
+        return null;
+    }
+}
+
+const updateLivesService = async(teamId : string, lives : number) => {
+    const team
+    = await Team.findOneAndUpdate({
+        teamId : teamId
+    },{
+        lives : lives
+    },{new : true})
+    return team;
+}
+
+
+export {createTeamService, loginTeamService, getAllTeams, getLivesService, updateLivesService}

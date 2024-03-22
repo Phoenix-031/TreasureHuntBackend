@@ -56,4 +56,25 @@ const getAllTeams = async(
     return GenerateResponse(res,200,teams);
 }
 
-export { createTeam, loginTeam, getAllTeams };
+const getLives = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const {teamId} = req.params;
+    console.log(teamId)
+    const lives = await teamService.getLivesService(teamId);
+    return GenerateResponse(res,200,lives);
+}
+
+const updateLives = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const {teamId, lives} = req.body;
+    const updatedTeam = await teamService.updateLivesService(teamId, lives);
+    return GenerateResponse(res,200,updatedTeam);
+}
+
+export { createTeam, loginTeam, getAllTeams, getLives, updateLives};

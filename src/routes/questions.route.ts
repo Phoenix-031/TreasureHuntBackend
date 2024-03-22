@@ -11,5 +11,4 @@ questionRouter.get("/:id",getQuestionById);
 questionRouter.post('/', createQuestion);
 questionRouter.get('/',getAllQuestions)
 
-
 export { questionRouter };
