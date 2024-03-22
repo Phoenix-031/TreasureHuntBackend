@@ -36,7 +36,7 @@ app.listen(PORT, async () => {
     );
 
     // tslint:disable-next-line:no-console
-    console.log(`Listening on ${BASE_URL}:${PORT}...`);
+    // console.log(`Listening on ${BASE_URL}:${PORT}...`);
 
     app.emit("ready");
 });
