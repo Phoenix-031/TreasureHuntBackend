@@ -31,7 +31,7 @@ const getQuestionById = async(
         try {
 
             const {id} = req.params
-            console.log(id)
+            // console.log(id)
             const qs = await questionService.getQuestionByIdService(id);
 
 
@@ -59,7 +59,7 @@ const verifyAnswer = async (
     req: Request,
     res: Response,
     next: NextFunction) : Promise<Response | void> => {
-        console.log(req.body)
+        // console.log(req.body)
         
         try {
             const {questionId, answerCode} = req.body;

@@ -35,6 +35,10 @@ const teamSchema: Schema<any> = new Schema(
         spotArray: {
             type : Array<String>,
             default : [],
+        },
+        answerString : {
+            type:String,
+            default: ''
         }
     },
     {

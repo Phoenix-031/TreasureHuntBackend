@@ -7,6 +7,10 @@ const createTeamService = async  (dto : TeamDto) : Promise<TeamSchemaDto> => {
     return Team.create(dto);
 }
 
+const checkTeamName = async (teamString : string)=>{
+    return Team.findOne({teamName : teamString});
+}
+
 const loginTeamService = async (dto :any) => {
     const qs = await Team.findOne({teamId : dto.teamId});
 
@@ -50,5 +54,15 @@ const updateLivesService = async(teamId : string, lives : number) => {
     return team;
 }
 
+const updateAnswerHashService = async(teamId : string, answerHash : string) => {
+    const team
+    = await Team.findOneAndUpdate({
+        teamId : teamId
+    },{
+        answerString : answerHash
+    },{new : true})
+    return team;
+}
 
-export {createTeamService, loginTeamService, getAllTeams, getLivesService, updateLivesService}
+
+export {createTeamService, loginTeamService, getAllTeams, getLivesService, updateLivesService, checkTeamName, updateAnswerHashService}

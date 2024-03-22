@@ -14,13 +14,24 @@ const createTeam = async(
 
             const dto : TeamDto  = {...req.body}
 
+            const tm = await teamService.checkTeamName(dto.teamName);
+            console.log(tm,"dfvbjhb")
 
-            const qs:TeamSchemaDto  = await teamService.createTeamService(dto);
+            if(tm) {
+                return GenerateResponse(res,200,{
+                    message: "Team name already exists"
+                })
+            }else {
 
-            return GenerateResponse(res,201,qs)
+                const qs:TeamSchemaDto  = await teamService.createTeamService(dto);
+
+                return GenerateResponse(res,201,qs)
+            }
             
         } catch (error) {
-            console.log(error);
+            return GenerateResponse(res,500,{
+                message: "Internal server error"
+            })
         }
 }
 
@@ -77,4 +88,15 @@ const updateLives = async (
     return GenerateResponse(res,200,updatedTeam);
 }
 
-export { createTeam, loginTeam, getAllTeams, getLives, updateLives};
+const setAnswerHash = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const {teamId, answerHash} = req.body;
+    const hasupdated = await teamService.updateAnswerHashService(teamId, answerHash);
+    console.log(hasupdated)
+    return GenerateResponse(res,200,hasupdated);
+}
+
+export { createTeam, loginTeam, getAllTeams, getLives, updateLives, setAnswerHash};
