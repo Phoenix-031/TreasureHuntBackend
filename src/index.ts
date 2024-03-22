@@ -18,9 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-const PROJECT_NAME = String(process.env.PROJECT_NAME);
+// const PROJECT_NAME = String(process.env.PROJECT_NAME);
 const MONGO_URI = process.env.CONNECTION_URI;
-const BASE_URL = process.env.BASE_URL;
+// const BASE_URL = process.env.BASE_URL;
 const PORT = Number(process.env.PORT);
 
 app.use("/api/v1", mainRouter);
