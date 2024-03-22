@@ -14,7 +14,7 @@ const checkTeamName = async (teamString : string)=>{
 const loginTeamService = async (dto :any) => {
     const qs = await Team.findOne({teamId : dto.teamId});
 
-    if(qs.espektroId=== dto.espektroId) {
+    if(qs.espektroId === dto.espektroId) {
         return qs;
     }else
        return null;
