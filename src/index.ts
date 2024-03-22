@@ -34,6 +34,7 @@ app.listen(PORT, async () => {
     console.log(
         `${getConnectionState(db.connection.readyState)} to the database`
     );
+    console.log('server is up and running')
 
     // tslint:disable-next-line:no-console
     // console.log(`Listening on ${BASE_URL}:${PORT}...`);
