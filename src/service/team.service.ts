@@ -85,5 +85,13 @@ const isDisqualifiedService= async(teamId : string) => {
 
 }
 
+const updateAllLivesService= async(lives : number) => {
+    const team
+    = await Team.updateMany({},{
+        lives : lives
+    })
+    return team;
+}
 
-export {createTeamService, loginTeamService, getAllTeams, getLivesService, updateLivesService, checkTeamName, updateAnswerHashService, isDisqualifiedService}
+
+export {createTeamService, loginTeamService, getAllTeams, getLivesService, updateLivesService, checkTeamName, updateAnswerHashService, isDisqualifiedService, updateAllLivesService}

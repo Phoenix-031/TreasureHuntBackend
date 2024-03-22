@@ -72,9 +72,9 @@ const getLives = async (
     res: Response,
     next: NextFunction
 ) => {
-    const {teamId} = req.params;
-    console.log(teamId)
-    const lives = await teamService.getLivesService(teamId);
+    const {teamId} = req.query;
+    // console.log(req.params)
+    const lives = await teamService.getLivesService(req.query.teamId as string);
     return GenerateResponse(res,200,lives);
 }
 
@@ -110,4 +110,15 @@ const setDisqualified = async (
     return GenerateResponse(res,200,hasupdated);
 }
 
-export { createTeam, loginTeam, getAllTeams, getLives, updateLives, setAnswerHash, setDisqualified};
+
+const updateAllLives = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const {lives} = req.body;
+    const updatedTeam = await teamService.updateAllLivesService(lives);
+    return GenerateResponse(res,200,updatedTeam);
+}
+
+export { createTeam, loginTeam, getAllTeams, getLives, updateLives, setAnswerHash, setDisqualified, updateAllLives};
