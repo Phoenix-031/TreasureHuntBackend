@@ -30,7 +30,7 @@ const teamSchema: Schema<any> = new Schema(
         },
         lives: {
             type: Number,
-            default: 10,
+            default: 15,
         },
         spotArray: {
             type : Array<String>,

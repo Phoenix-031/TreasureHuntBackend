@@ -15,5 +15,4 @@ teamRouter.patch('/lives',updateLives);
 teamRouter.post ('/answerhash',setAnswerHash)
 teamRouter.post('/disqualified',setDisqualified)
 
-
 export { teamRouter };
