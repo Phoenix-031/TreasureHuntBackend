@@ -18,12 +18,33 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-// const PROJECT_NAME = String(process.env.PROJECT_NAME);
+const PROJECT_NAME = String(process.env.PROJECT_NAME);
 const MONGO_URI = process.env.CONNECTION_URI;
-// const BASE_URL = process.env.BASE_URL;
+const BASE_URL = process.env.BASE_URL;
 const PORT = Number(process.env.PORT);
 
 app.use("/api/v1", mainRouter);
+
+app.get("/", (req:Request, res:Response) => {
+    const date = new Date();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+
+    let timeString = `${hours}:${minutes}:${seconds}`;
+    res.json({
+        message : "Server is up and running",
+        time :  timeString,
+    })
+})
+
+app.use("*", (req:Request, res:Response) => {
+    res.status(404).json({
+        code : 404,
+        type : "error",
+        message : "Not Found"
+    })
+})
 
 app.listen(PORT, async () => {
 
@@ -32,7 +53,7 @@ app.listen(PORT, async () => {
     );
 
     console.log(
-        `${getConnectionState(db.connection.readyState)} to the database`
+        `${getConnectionState(db.connection.readyState)} to the database ${db.connection.name}`
     );
     console.log('server is up and running')
 
