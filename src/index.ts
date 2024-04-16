@@ -1,12 +1,15 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import path from 'path';
-import { GenerateResponse } from './utils/response.creator';
-import { connect } from './config/db.config';
+// import { connect } from './config/db.config';
 
-import { getConnectionState } from './config/db.config';
+// import { getConnectionState } from './config/db.config';
 import { mainRouter } from './routes/main.route';
+
+
+//firebase imports
+
+import {onRequest} from "firebase-functions/v2/https";
 
 dotenv.config({ path: './.env' });
 
@@ -16,12 +19,6 @@ const app = express()
 app.use(cors()); 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
-
-
-const PROJECT_NAME = String(process.env.PROJECT_NAME);
-const MONGO_URI = process.env.CONNECTION_URI;
-const BASE_URL = process.env.BASE_URL;
-const PORT = Number(process.env.PORT);
 
 app.use("/api/v1", mainRouter);
 
@@ -46,19 +43,4 @@ app.use("*", (req:Request, res:Response) => {
     })
 })
 
-app.listen(PORT, async () => {
-
-    const db = await connect(
-        MONGO_URI || '' // provide a default value if MONGO_URI is undefined
-    );
-
-    console.log(
-        `${getConnectionState(db.connection.readyState)} to the database ${db.connection.name}`
-    );
-    console.log('server is up and running')
-
-    // tslint:disable-next-line:no-console
-    // console.log(`Listening on ${BASE_URL}:${PORT}...`);
-
-    app.emit("ready");
-});
+export const treasureHuntApi = onRequest(app);

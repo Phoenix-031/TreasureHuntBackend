@@ -72,7 +72,6 @@ const getLives = async (
     res: Response,
     next: NextFunction
 ) => {
-    const {teamId} = req.query;
     // console.log(req.params)
     const lives = await teamService.getLivesService(req.query.teamId as string);
     return GenerateResponse(res,200,lives);

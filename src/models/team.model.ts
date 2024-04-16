@@ -1,5 +1,4 @@
 import { model, Model, Schema } from "mongoose";
-import { genSaltSync, hashSync } from "bcryptjs";
 // import { TeamSchemaDto } from "../dtos/user.dtos";
 
 const teamSchema: Schema<any> = new Schema(

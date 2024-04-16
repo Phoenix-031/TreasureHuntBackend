@@ -1,5 +1,3 @@
-import { Types } from "mongoose";
-
 import { Team } from "../models/team.model";
 import { TeamDto, TeamSchemaDto } from "../dtos/team.dtos";
 
@@ -70,8 +68,7 @@ const updateAnswerHashService = async(teamId : string, answerHash : string) => {
 }
 
 const isDisqualifiedService= async(teamId : string) => {
-    const team
-    = await Team.findOne({
+    await Team.findOne({
         teamId : teamId
     })
 
